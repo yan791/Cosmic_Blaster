@@ -13,3 +13,10 @@ typedef struct Nave {
     Texture2D *textura;
     float raio;
 } Nave;
+
+typedef struct Bala {
+    Vector2 posicao;
+    Vector2 velocidade;
+    float tempoVida;
+    struct Bala *prox;
+} Bala;
