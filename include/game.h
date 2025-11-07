@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#define TIPOS_ASTEROIDE 4
 #include "raylib.h"
 #include <stddef.h> 
 #include <stdbool.h>
