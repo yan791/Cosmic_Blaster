@@ -20,3 +20,13 @@ typedef struct Bala {
     float tempoVida;
     struct Bala *prox;
 } Bala;
+
+typedef struct Asteroide {
+    Vector2 posicao;
+    Vector2 velocidade;
+    float rotacao;
+    float velocidadeAngular;
+    int tipo;
+    float raio;
+    struct Asteroide *prox;
+} Asteroide;
