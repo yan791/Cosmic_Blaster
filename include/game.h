@@ -30,3 +30,9 @@ typedef struct Asteroide {
     float raio;
     struct Asteroide *prox;
 } Asteroide;
+
+typedef struct Estrela {
+    Vector2 posicao;
+    float velocidade;
+    int tamanho;
+} Estrela;
