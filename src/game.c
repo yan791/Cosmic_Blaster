@@ -35,3 +35,18 @@ void GarantirAssetsCarregados(void) {
     CarregarTexturaSegura(&texturaAsteroides[3], "assets/Sprites/AsteroideP.png");
     assetsCarregados = true;
 }
+static float GrausParaRad(float graus) {
+    return graus * (PI / 180.0);
+}
+static Vector2 DirecaoFrente(float graus) {
+    float radianos = GrausParaRad(graus - 90.0);
+    Vector2 direcao;
+    direcao.x = cosf(radianos);
+    direcao.y = sinf(radianos);
+    return direcao;
+}
+static float Comprimento(Vector2 v) {
+    float soma = (v.x * v.x) + (v.y * v.y);
+    float tamanho = sqrtf(soma);
+    return tamanho;
+}
