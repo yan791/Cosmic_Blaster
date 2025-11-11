@@ -114,3 +114,25 @@ int LoadBestScore(const char *path) {
 
     return best;
 }
+
+Nave* CriarNave(void) {
+    GarantirAssetsCarregados(); 
+
+    Nave* nave = (Nave*) malloc(sizeof(Nave));
+    if (nave == NULL) {
+        return NULL; 
+    }
+
+    Vector2 posInicial;
+    posInicial.x = SCREEN_W_DEFAULT / 2;
+    posInicial.y = SCREEN_H_DEFAULT * 0.8;
+    nave->posicao = posInicial;
+
+    nave->rotacao = 0;
+    nave->velocidade = 260;
+    nave->pontuacao = 0;
+    nave->textura = &texturaNaveAzul; 
+    nave->raio = nave->textura->width * 0.35;
+
+    return nave;
+}
