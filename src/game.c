@@ -136,3 +136,33 @@ Nave* CriarNave(void) {
 
     return nave;
 }
+
+void AtualizarNave(Nave* nave, float dt) {
+    if (nave == NULL) {
+        return;
+    }
+    Vector2 direcao = { 0, 0 };
+
+    if (IsKeyDown(KEY_A)) direcao.x = -1;
+    if (IsKeyDown(KEY_D)) direcao.x =  1;
+    if (IsKeyDown(KEY_W)) direcao.y = -1;
+    if (IsKeyDown(KEY_S)) direcao.y =  1;
+
+    if (direcao.x != 0 || direcao.y != 0) {
+        float tamanho = Comprimento(direcao);
+        direcao.x /= tamanho;
+        direcao.y /= tamanho;
+
+        nave->posicao.x += direcao.x * nave->velocidade * dt;
+        nave->posicao.y += direcao.y * nave->velocidade * dt;
+        nave->rotacao = atan2f(direcao.y, direcao.x) * (180 / PI) + 90;
+    }
+    if (IsKeyPressed(KEY_TAB)) {
+        if (nave->textura == &texturaNaveAzul){
+            nave->textura = &texturaNaveVermelha;
+        }
+        else{
+            nave->textura = &texturaNaveAzul;
+        }
+    }
+}
