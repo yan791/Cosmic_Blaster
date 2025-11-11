@@ -90,3 +90,27 @@ void AtualizarBalas(Bala **lista, float dt) {
         }
     }
 }
+
+void SaveBestScore(const char *path, int best) {
+    FILE *f;
+    f = fopen(path, "w");
+    if (f == NULL) {
+        return;
+    }
+    fprintf(f, "%d\n", best);
+    fclose(f);
+}
+
+int LoadBestScore(const char *path) {
+    FILE *f;
+    int best;
+    f = fopen(path, "r");
+    if (f == NULL) {
+        return 0;
+    }
+    fscanf(f, "%d", &best);
+
+    fclose(f);
+
+    return best;
+}
