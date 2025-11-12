@@ -170,3 +170,25 @@ void AtualizarNave(Nave* nave, float dt) {
 static float RandRange(float a,float b){
     return a + ((float)rand() / RAND_MAX) * (b-a);
 }
+
+void GerarAsteroide(Asteroide **lista) {
+    Asteroide *novo = (Asteroide*)malloc(sizeof(Asteroide));
+    if (novo == NULL) {
+        return;
+    }
+
+    novo->posicao.x = RandRange(0, SCREEN_W_DEFAULT);
+    novo->posicao.y = -40;
+
+    novo->velocidade.x = RandRange(-20, 20);
+    novo->velocidade.y = RandRange(60, 140);
+
+    novo->rotacao = RandRange(0, 360);
+    novo->velocidadeAngular = RandRange(-90, 90);
+
+    novo->tipo = rand() % TIPOS_ASTEROIDE;
+    novo->raio = texturaAsteroides[novo->tipo].width * 0.4;
+
+    novo->prox = *lista;
+    *lista = novo;
+}
