@@ -166,3 +166,7 @@ void AtualizarNave(Nave* nave, float dt) {
         }
     }
 }
+
+static float RandRange(float a,float b){
+    return a + ((float)rand() / RAND_MAX) * (b-a);
+}
