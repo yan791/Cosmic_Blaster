@@ -36,3 +36,11 @@ typedef struct Estrela {
     float velocidade;
     int tamanho;
 } Estrela;
+
+typedef struct CampoEstrelas {
+    Estrela *estrelas;
+    int qtdProximas;
+    int qtdDistantes;
+    int largura;
+    int altura;
+} CampoEstrelas;

@@ -192,3 +192,53 @@ void GerarAsteroide(Asteroide **lista) {
     novo->prox = *lista;
     *lista = novo;
 }
+
+CampoEstrelas* CriarCampoEstrelas(int dist, int prox, int w, int h) {
+    CampoEstrelas *campo;
+    int total;
+    int i = 0;
+
+    campo = malloc(sizeof(CampoEstrelas));
+    if (campo == 0) {
+        return 0;
+    }
+
+    campo->qtdDistantes = dist;
+    campo->qtdProximas = prox;
+    campo->largura = w;
+    campo->altura = h;
+
+    total = dist + prox;
+
+    campo->estrelas = malloc(total * sizeof(Estrela));
+    if (campo->estrelas == 0) {
+        free(campo);
+        return 0;
+    }
+    while (i < total) {
+        campo->estrelas[i].posicao.x = RandRange(0, w);
+        campo->estrelas[i].posicao.y = RandRange(0, h);
+        if (i < dist) {
+            campo->estrelas[i].velocidade = 30;
+            campo->estrelas[i].tamanho = 1;
+        }
+        if (i >= dist) {
+            campo->estrelas[i].velocidade = 80;
+            campo->estrelas[i].tamanho = 2;
+        }
+        i = i + 1;
+    }
+    return campo;
+}
+
+void AtualizarCampoEstrelas(CampoEstrelas *c, float dt, int w, int h) {
+    int total;
+    total = c->qtdDistantes + c->qtdProximas;
+
+    for (int i = 0; i < total; i = i + 1) {
+        c->estrelas[i].posicao.y = c->estrelas[i].posicao.y + (c->estrelas[i].velocidade * dt);
+        if (c->estrelas[i].posicao.y > h) {
+            c->estrelas[i].posicao.y = -5;
+        }
+    }
+}
