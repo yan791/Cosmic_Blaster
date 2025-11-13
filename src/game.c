@@ -35,6 +35,19 @@ void GarantirAssetsCarregados(void) {
     CarregarTexturaSegura(&texturaAsteroides[3], "assets/Sprites/AsteroideP.png");
     assetsCarregados = true;
 }
+
+void DescarregarAssets(void) {
+    if (assetsCarregados == false) {
+        return;
+}
+    UnloadTexture(texturaNaveAzul);
+    UnloadTexture(texturaLaser);
+    for (int i = 0; i < TIPOS_ASTEROIDE; i++) {
+        UnloadTexture(texturaAsteroides[i]);
+    }
+    assetsCarregados = false;
+}
+
 static float GrausParaRad(float graus) {
     return graus * (PI / 180.0);
 }
