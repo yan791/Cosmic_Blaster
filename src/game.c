@@ -275,3 +275,13 @@ void AtualizarAsteroides(Asteroide **lista, float dt) {
         }
     }
 }
+
+void DesenharBalas(const Bala *lista) {
+    const Bala *atual = lista; 
+
+    while (atual != NULL) {
+        float rotacao = atan2f(atual->velocidade.y, atual->velocidade.x) * (180 / PI) + 90;
+        DesenharCentralizado(texturaLaser, atual->posicao, rotacao, 1.3);
+        atual = atual->prox;
+    }
+}
