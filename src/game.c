@@ -255,3 +255,23 @@ void AtualizarCampoEstrelas(CampoEstrelas *c, float dt, int w, int h) {
         }
     }
 }
+
+void AtualizarAsteroides(Asteroide **lista, float dt) {
+    if (rand()%100 < 3) GerarAsteroide(lista);
+
+    Asteroide **pp = lista;
+    while (*pp) {
+        Asteroide *a = *pp;
+        a->posicao.x += a->velocidade.x*dt;
+        a->posicao.y += a->velocidade.y*dt;
+        a->rotacao += a->velocidadeAngular*dt;
+
+        if (a->posicao.y > SCREEN_H_DEFAULT+100) {
+            *pp = a->prox;
+            free(a);
+        } 
+        else {
+            pp = &a->prox;
+        }
+    }
+}
