@@ -285,3 +285,21 @@ void DesenharBalas(const Bala *lista) {
         atual = atual->prox;
     }
 }
+
+void DesenharCampoEstrelas(const CampoEstrelas *c) {
+    int total;
+    int i;
+    int x;
+    int y;
+    int tam;
+
+    total = c->qtdDistantes + c->qtdProximas;
+
+    for (i = 0; i < total; i = i + 1) {
+        x = c->estrelas[i].posicao.x;
+        y = c->estrelas[i].posicao.y;
+        tam = c->estrelas[i].tamanho;
+
+        DrawRectangle(x, y, tam, tam, WHITE);
+    }
+}
