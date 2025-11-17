@@ -303,3 +303,10 @@ void DesenharCampoEstrelas(const CampoEstrelas *c) {
         DrawRectangle(x, y, tam, tam, WHITE);
     }
 }
+
+void DesenharAsteroides(const Asteroide *lista) {
+    while (lista) {
+        DesenharCentralizado(texturaAsteroides[lista->tipo], lista->posicao, lista->rotacao, 1);
+        lista = lista->prox;
+    }
+}
