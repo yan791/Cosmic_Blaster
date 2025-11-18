@@ -310,3 +310,10 @@ void DesenharAsteroides(const Asteroide *lista) {
         lista = lista->prox;
     }
 }
+
+static bool Colisao(Vector2 p1,float r1,Vector2 p2,float r2){
+    float dx = p2.x - p1.x;
+    float dy = p2.y-p1.y;
+    float d = dx * dx + dy * dy;
+    return d <= (r1+r2) * (r1+r2);
+}
