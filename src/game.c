@@ -317,3 +317,53 @@ static bool Colisao(Vector2 p1,float r1,Vector2 p2,float r2){
     float d = dx * dx + dy * dy;
     return d <= (r1+r2) * (r1+r2);
 }
+
+int ProcessarColisoes(Bala **balas, Asteroide **asts) {
+    int pontos = 0;
+    Bala *atual = *balas;
+    Bala *anterior = NULL;
+
+    while (atual != NULL) {
+        Asteroide *atualAst = *asts;
+        Asteroide *anteriorAst = NULL;
+        int colidiu = 0;
+
+        while (atualAst != NULL) {
+            if (Colisao(atual->posicao, 10, atualAst->posicao, atualAst->raio)) {
+                if (anteriorAst == NULL) {
+                    *asts = atualAst->prox;
+                } 
+                else {
+                    anteriorAst->prox = atualAst->prox;
+                }
+                free(atualAst);
+                if (anterior == NULL) {
+                    *balas = atual->prox;
+                } 
+                else {
+                    anterior->prox = atual->prox;
+                }
+                free(atual);
+
+                pontos = pontos + 10;
+                colidiu = 1;
+                break; 
+            }
+            anteriorAst = atualAst;
+            atualAst = atualAst->prox;
+        }
+        if (colidiu == 0) {
+            anterior = atual;
+            atual = atual->prox;
+        } 
+        else {
+            if (anterior == NULL) {
+                atual = *balas;
+            } 
+            else {
+                atual = anterior->prox;
+            }
+        }
+    }
+    return pontos;
+}
