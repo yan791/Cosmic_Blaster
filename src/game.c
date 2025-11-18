@@ -7,6 +7,7 @@ static bool assetsCarregados = false;
 static Texture2D texturaNaveAzul;
 static Texture2D texturaLaser;
 static Texture2D texturaAsteroides[TIPOS_ASTEROIDE];
+static void DesenharCentralizado(Texture2D textura, Vector2 posicao, float rotacao, float escala);
 
 void CarregarTexturaSegura(Texture2D *destino, const char *caminho) {
     Image imagem = LoadImage(caminho);
@@ -179,7 +180,18 @@ void AtualizarNave(Nave* nave, float dt) {
         }
     }
 }
-
+static void DesenharCentralizado(Texture2D textura, Vector2 pos, float rot, float escala) {
+    Rectangle src = {
+        0,0,(float)textura.width,(float)textura.height
+    };
+    Rectangle dst = {
+        pos.x,pos.y,textura.width*escala,textura.height*escala
+    };
+    Vector2 origem = {
+        dst.width/2, dst.height/2
+    };
+    DrawTexturePro(textura, src, dst, origem, rot, WHITE);
+}
 static float RandRange(float a,float b){
     return a + ((float)rand() / RAND_MAX) * (b-a);
 }
