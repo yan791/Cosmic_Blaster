@@ -316,6 +316,14 @@ void DesenharCampoEstrelas(const CampoEstrelas *c) {
     }
 }
 
+void LiberarCampoEstrelas(CampoEstrelas *c){
+    if (c == NULL) {
+        return;
+    }
+    free(c->estrelas);
+    free(c);
+}
+
 void DesenharAsteroides(const Asteroide *lista) {
     while (lista) {
         DesenharCentralizado(texturaAsteroides[lista->tipo], lista->posicao, lista->rotacao, 1);
