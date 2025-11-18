@@ -59,3 +59,59 @@ static void DesenharJogo(void) {
 
     EndDrawing();
 }
+
+static void AtualizarJogo(void) {
+    float dt = GetFrameTime();
+
+    switch (telaAtual) {
+        case TELA_TITULO:
+            if (IsKeyPressed(KEY_SPACE)) {
+                DescarregarJogo();
+                balas = NULL;
+                asteroides = NULL;
+                nave = CriarNave();
+                campoEstrelas = CriarCampoEstrelas(100, 50, SCREEN_W_DEFAULT, SCREEN_H_DEFAULT);
+                telaAtual = TELA_JOGO;
+            }
+        break;
+
+        case TELA_JOGO:
+            if (nave) AtualizarNave(nave, dt);
+
+            if (nave && IsKeyPressed(KEY_SPACE)) {
+                AdicionarBala(&balas, nave->posicao, nave->rotacao);
+            }
+
+            AtualizarBalas(&balas, dt);
+            AtualizarAsteroides(&asteroides, dt);
+            AtualizarCampoEstrelas(campoEstrelas, dt, SCREEN_W_DEFAULT, SCREEN_H_DEFAULT);
+
+            if (nave) {
+                int pontos = ProcessarColisoes(&balas, &asteroides);
+                nave->pontuacao += pontos;
+            }
+
+            for (Asteroide *a = asteroides; a != NULL; a = a->prox) {
+                if (nave && VerificarColisaoNaveAsteroide(nave, a)) {
+                    if (nave->pontuacao > melhorPontuacao) {
+                        melhorPontuacao = nave->pontuacao;
+                        SaveBestScore("score.txt", melhorPontuacao);
+                    }
+                    telaAtual = TELA_GAMEOVER;
+                    break;
+                }
+            }
+        break;
+
+        case TELA_GAMEOVER:
+            if (IsKeyPressed(KEY_ENTER)) {
+                DescarregarJogo();
+                balas = NULL;
+                asteroides = NULL;
+                nave = CriarNave();
+                campoEstrelas = CriarCampoEstrelas(100, 50, SCREEN_W_DEFAULT, SCREEN_H_DEFAULT);
+                telaAtual = TELA_JOGO;
+            }
+        break;
+    }
+}
