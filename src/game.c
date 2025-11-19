@@ -383,3 +383,22 @@ int ProcessarColisoes(Bala **balas, Asteroide **asts) {
     }
     return pontos;
 }
+void LiberarTodosDadosJogo(Nave *n, Bala **b, Asteroide **a, CampoEstrelas *c) {
+    Bala *tempBala;
+    Asteroide *tempAst;
+    if (n != NULL) {
+        free(n);
+    }
+    while (*b != NULL) {
+        tempBala = *b;
+        *b = tempBala->prox;
+        free(tempBala);
+    }
+    while (*a != NULL) {
+        tempAst = *a;
+        *a = tempAst->prox;
+        free(tempAst);
+    }
+    LiberarCampoEstrelas(c);
+    DescarregarAssets();
+}
