@@ -115,6 +115,13 @@ static void AtualizarJogo(void) {
         break;
     }
 }
+static void DescarregarJogo(void) {
+    LiberarTodosDadosJogo(nave, &balas, &asteroides, campoEstrelas);
+    nave = NULL;
+    balas = NULL;
+    asteroides = NULL;
+    campoEstrelas = NULL;
+}
 
 int main(void) {
     InicializarJogo();

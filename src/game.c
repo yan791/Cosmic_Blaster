@@ -150,6 +150,11 @@ Nave* CriarNave(void) {
 
     return nave;
 }
+void DesenharNave(const Nave *n) {
+    if (n) {
+        DesenharCentralizado(*n->textura, n->posicao, n->rotacao, 1);
+    }
+}
 
 void AtualizarNave(Nave* nave, float dt) {
     if (nave == NULL) {
