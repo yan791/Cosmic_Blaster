@@ -44,3 +44,38 @@ typedef struct CampoEstrelas {
     int largura;
     int altura;
 } CampoEstrelas;
+
+typedef struct Explosao {
+    Vector2 pos;
+    float tempo;
+    int frame;
+    struct Explosao *prox;
+} Explosao;
+
+void GarantirAssetsCarregados(void);
+void DescarregarAssets(void);
+
+Nave* CriarNave(void);
+void AtualizarNave(Nave *n, float dt);
+void DesenharNave(const Nave *n);
+
+void AdicionarBala(Bala **lista, Vector2 posSpawn, float rotacao);
+void AtualizarBalas(Bala **lista, float dt);
+void DesenharBalas(const Bala *lista);
+
+void AtualizarAsteroides(Asteroide **lista, float dt);
+void DesenharAsteroides(const Asteroide *lista);
+bool VerificarColisaoNaveAsteroide(const Nave *n, const Asteroide *a);
+int ProcessarColisoes(Bala **balas, Asteroide **asteroides);
+
+CampoEstrelas* CriarCampoEstrelas(int distantes, int proximas, int largura, int altura);
+void AtualizarCampoEstrelas(CampoEstrelas *campo, float dt, int largura, int altura);
+void DesenharCampoEstrelas(const CampoEstrelas *campo);
+void LiberarCampoEstrelas(CampoEstrelas *campo);
+
+void LiberarTodosDadosJogo(Nave *n, Bala **b, Asteroide **a, CampoEstrelas *ce);
+
+int LoadBestScore(const char *path);
+void SaveBestScore(const char *path, int best);
+
+#endif
