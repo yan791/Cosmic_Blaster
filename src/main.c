@@ -115,3 +115,16 @@ static void AtualizarJogo(void) {
         break;
     }
 }
+
+int main(void) {
+    InicializarJogo();
+
+    while (!WindowShouldClose()) {
+        AtualizarJogo();
+        DesenharJogo();
+    }
+
+    DescarregarJogo();
+    CloseWindow();
+    return 0;
+}
