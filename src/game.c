@@ -402,3 +402,7 @@ void LiberarTodosDadosJogo(Nave *n, Bala **b, Asteroide **a, CampoEstrelas *c) {
     LiberarCampoEstrelas(c);
     DescarregarAssets();
 }
+
+bool VerificarColisaoNaveAsteroide(const Nave *n,const Asteroide *a){
+    return Colisao(n->posicao,n->raio,a->posicao,a->raio);
+}
