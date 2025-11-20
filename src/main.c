@@ -7,6 +7,19 @@ typedef enum {
     TELA_GAMEOVER
 } TelaJogo;
 
+static Nave *nave = NULL;
+static Bala *balas = NULL;
+static Asteroide *asteroides = NULL;
+static CampoEstrelas *campoEstrelas = NULL;
+
+static TelaJogo telaAtual = TELA_TITULO;
+static int melhorPontuacao = 0;
+
+static void InicializarJogo(void);
+static void AtualizarJogo(void);
+static void DesenharJogo(void);
+static void DescarregarJogo(void);
+
 static void InicializarJogo(void) {
     InitWindow(SCREEN_W_DEFAULT, SCREEN_H_DEFAULT, "Cosmic Blaster");
     SetTargetFPS(60);
