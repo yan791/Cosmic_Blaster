@@ -1,6 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 #define TIPOS_ASTEROIDE 4
+#define SCREEN_W_DEFAULT 800
+#define SCREEN_H_DEFAULT 600
+
 #include "raylib.h"
 #include <stddef.h> 
 #include <stdbool.h>
