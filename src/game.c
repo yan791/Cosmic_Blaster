@@ -173,9 +173,14 @@ void AtualizarNave(Nave* nave, float dt) {
 
         nave->posicao.x += direcao.x * nave->velocidade * dt;
         nave->posicao.y += direcao.y * nave->velocidade * dt;
-
         nave->rotacao = atan2f(direcao.y, direcao.x) * (180 / PI) + 90;
     }
+
+    if (nave->posicao.x < nave->raio) nave->posicao.x = nave->raio;
+    if (nave->posicao.x > SCREEN_W_DEFAULT - nave->raio) nave->posicao.x = SCREEN_W_DEFAULT - nave->raio;
+    if (nave->posicao.y < nave->raio) nave->posicao.y = nave->raio;
+    if (nave->posicao.y > SCREEN_H_DEFAULT - nave->raio) nave->posicao.y = SCREEN_H_DEFAULT - nave->raio;
+    
     if (IsKeyPressed(KEY_TAB)) {
         nave->textura = &texturaNaveAzul;
     }
