@@ -4,6 +4,7 @@
 
 -----
 ## Screencast
+[![SCREENCAST](https://img.shields.io/badge/SCREENCAST-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/7QO6qUvuwI4)
 -----
 
 ## 💻 Requisitos macOS
@@ -109,5 +110,7 @@ Se a compilação for bem-sucedida, executa o jogo com:
 -----
 ## Colaboradores
 [Yan Ribeiro Nunes](https://www.linkedin.com/in/yan-ribeiro-nunes/)
+
 [Caio Leimig Rodrigues da Silva](https://www.linkedin.com/in/caio-leimig-rodrigues-da-silva/)
+
 [Pablo Jose Pellegrino Cintra](https://www.linkedin.com/in/pablo-cintra/)
